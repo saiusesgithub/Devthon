@@ -10,7 +10,7 @@ export default function About() {
             </h2>
             <p className="text-lg text-foreground/80 mb-6 leading-relaxed">
               Join the DevUp First-Year Hackathon 2025, where first-year students collaborate to build innovative
-              solutions. This 24-hour coding marathon brings together creative minds to tackle real-world problems and
+              solutions. This 2-day college hour coding hackathon brings together creative minds to tackle real-world problems and
               showcase their skills.
             </p>
             <p className="text-lg text-foreground/80 mb-6 leading-relaxed">
@@ -19,15 +19,15 @@ export default function About() {
             </p>
             <div className="flex gap-8 flex-wrap">
               <div>
-                <div className="text-3xl font-bold text-accent">500+</div>
+                <div className="text-3xl font-bold text-accent">400+</div>
                 <div className="text-foreground/60">Participants</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-accent">50+</div>
+                <div className="text-3xl font-bold text-accent">100+</div>
                 <div className="text-foreground/60">Teams</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-accent">$10K+</div>
+                <div className="text-3xl font-bold text-accent">₹25K+</div>
                 <div className="text-foreground/60">Prize Pool</div>
               </div>
             </div>

@@ -42,15 +42,13 @@ export const organizers = [
     id: 5,
     name: 'Govardhan',
     role: 'Design Lead',
-    // no uploaded photo found for Govardhan; keep placeholder
-    image: 'https://ui-avatars.com/api/?name=Govardhan&size=400&background=a855f7&color=fff&bold=true',
+    image: '/organizers/Govardhan.jpg',
     bio: 'Creating stunning visual experiences and leading all design initiatives.',
   },
   {
     id: 6,
     name: 'Emmanuel',
     role: 'Event Management Lead',
-    // updated to the uploaded file (Emmanuel.jpg)
     image: '/organizers/Emmanuel.jpg',
     bio: 'Orchestrating seamless events and managing all logistical operations.',
   },
@@ -58,8 +56,28 @@ export const organizers = [
     id: 7,
     name: 'Nashra Fatima',
     role: 'Collaboration and Partnerships Lead',
-    // updated to the uploaded file (Nashra.webp)
     image: '/organizers/Nashra.webp',
     bio: 'Building strategic partnerships and fostering collaborative opportunities.',
+  },
+   {
+    id: 8,
+    name: 'Jeevan',
+    role: 'Influence & Media Lead',
+    image: '/organizers/Jeevan.jpeg',
+    bio: 'Leading media outreach and enhancing the event\'s influence across platforms.',
+  },
+     {
+    id: 9,
+    name: 'Abrar',
+    role: 'Mission & Support Team Lead',
+    image: '/organizers/Abrar.jpg',
+    bio: 'Managing mission-critical tasks and providing robust support to the team.',
+  },
+       {
+    id: 10,
+    name: 'Chathurya',
+    role: 'IT Branch Representative',
+    image: '/organizers/Chathurya.jpg',
+    bio: 'Representing the IT branch and facilitating communication between students and organizers.',
   },
 ];
