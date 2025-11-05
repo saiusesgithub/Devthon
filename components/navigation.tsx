@@ -26,8 +26,8 @@ export default function Navigation() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled ? "glass-effect-dark border-b border-accent/30 backdrop-blur-md" : "border-b border-accent/10"
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 glass-effect-dark backdrop-blur-md ${
+        isScrolled ? "border-b border-accent/30" : "border-b border-accent/10"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

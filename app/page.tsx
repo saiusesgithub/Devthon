@@ -9,7 +9,7 @@ import Timeline from "@/components/timeline"
 import Prizes from "@/components/prizes"
 import Themes from "@/components/themes"
 import FAQ from "@/components/faq"
-import Sponsors from "@/components/sponsors"
+import Organizers from "@/components/organisers"
 import Footer from "@/components/footer"
 import CinematicIntro from "@/components/cinematic-intro"
 
@@ -34,7 +34,7 @@ export default function Home() {
         <Prizes />
         <Themes />
         <FAQ />
-        <Sponsors />
+        <Organizers />
         <Footer />
       </main>
     </>

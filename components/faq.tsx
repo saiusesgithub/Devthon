@@ -15,21 +15,21 @@ export default function FAQ() {
     {
       question: "Do I need to have a team before registering?",
       answer:
-        "While you can register individually, we recommend forming teams of 2-4 members. If you don't have a team, we'll help you find teammates during the event.",
+        "We recommend forming teams of 2-4 members.",
     },
     {
       question: "What should I bring to the hackathon?",
       answer:
-        "Bring your laptop, chargers, and any necessary development tools. We'll provide meals, snacks, and beverages throughout the 24-hour event.",
+        "Bring your laptop, chargers, and any necessary development tools.",
     },
     {
       question: "Are there any fees for participation?",
-      answer: "Registration is completely free! We cover all meals and provide prizes worth thousands of rupees.",
+      answer: "Yes , the registration fee is just ₹49 per participant - Limited slots available, Hurry before prices increase!",
     },
     {
       question: "What are the judging criteria?",
       answer:
-        "Projects are judged on innovation, technical complexity, design, and impact. We also consider how well you present your idea and execute it within 24 hours.",
+        "Projects are judged on innovation, technical complexity, design, and impact. We also consider how well you present your idea and MVP.",
     },
     {
       question: "Can we submit ideas from previous projects?",

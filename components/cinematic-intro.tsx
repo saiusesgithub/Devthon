@@ -206,7 +206,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
                   filter: "drop-shadow(0 0 30px rgba(0, 255, 179, 0.8))",
                 }}
               >
-                {devthonText.split("").map((char, i) => (
+                {/* {devthonText.split("").map((char, i) => (
                   <motion.span
                     key={i}
                     initial={{ opacity: 0, y: 100, rotateY: -180, scale: 0 }}
@@ -226,7 +226,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
                   >
                     {char === " " ? "\u00A0" : char}
                   </motion.span>
-                ))}
+                ))} */}
               </motion.div>
 
               {/* Energy beams */}
@@ -249,7 +249,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.8 + i * 0.1, duration: 0.5 }}
-                  className="absolute w-8 h-8 border-2 border-accent"
+                  className="absolute w-8 h-8 border-2 border-accent -z-20 hidden md:block"
                   style={pos}
                 />
               ))}

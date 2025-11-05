@@ -49,10 +49,10 @@ export default function Hero() {
 
         <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-balance mb-6">
           <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent">
-            DEVUP FIRST-YEAR
+            DEVTHON
           </span>
           <br />
-          <span className="text-foreground">HACKATHON 2025</span>
+          <span className="text-foreground">2025</span>
         </h1>
 
         <p className="text-lg sm:text-xl text-foreground/80 mb-8 text-balance max-w-2xl mx-auto">

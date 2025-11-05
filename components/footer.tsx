@@ -35,11 +35,11 @@ export default function Footer() {
             <h3 className="font-bold text-foreground mb-4">Get in Touch</h3>
             <div className="space-y-3">
               <a
-                href="mailto:hello@devuphackathon.com"
+                href="mailto:devupsociety@gmail.com"
                 className="flex items-center gap-2 text-foreground/60 hover:text-accent transition-colors"
               >
                 <Mail size={18} />
-                <span>hello@devuphackathon.com</span>
+                <span>devupsociety@gmail.com</span>
               </a>
               <div className="flex gap-4">
                 <a href="#" className="text-foreground/60 hover:text-accent transition-colors">
