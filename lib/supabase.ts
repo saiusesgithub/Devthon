@@ -15,6 +15,7 @@ export interface TeamRegistration {
   leader_phone: string
   total_members: number
   total_fee: number
+  is_present?: boolean
   created_at?: string
 }
 

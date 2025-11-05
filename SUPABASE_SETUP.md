@@ -15,6 +15,7 @@ CREATE TABLE teams (
   leader_phone TEXT NOT NULL,
   total_members INTEGER NOT NULL,
   total_fee INTEGER NOT NULL,
+  is_present BOOLEAN DEFAULT false,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW())
 );
 
@@ -57,7 +58,20 @@ CREATE POLICY "Enable read access for all users" ON team_members
 CREATE INDEX team_members_team_id_idx ON team_members(team_id);
 ```
 
-## 3. Verify Tables
+## 3. Add Attendance Column (Run if table already exists)
+
+If you already created the `teams` table without the `is_present` column, run this:
+
+```sql
+-- Add is_present column to existing teams table
+ALTER TABLE teams ADD COLUMN IF NOT EXISTS is_present BOOLEAN DEFAULT false;
+
+-- Update policy to allow updates for attendance (admin use)
+CREATE POLICY "Enable update for all users" ON teams
+  FOR UPDATE USING (true);
+```
+
+## 4. Verify Tables
 
 Run this to check if tables were created successfully:
 
