@@ -44,7 +44,7 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto animate-fade-in">
         <div className="inline-block mb-6 px-4 py-2 glass-effect rounded-full">
-          <span className="text-accent font-semibold text-sm">🚀 Innovation Awaits</span>
+          <span className="text-accent font-semibold text-sm">Innovation Awaits</span>
         </div>
 
         <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-balance mb-6">
