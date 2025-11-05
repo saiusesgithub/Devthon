@@ -15,21 +15,9 @@ import CinematicIntro from "@/components/cinematic-intro"
 
 export default function Home() {
   const [showIntro, setShowIntro] = useState(true)
-  const [hasSeenIntro, setHasSeenIntro] = useState(false)
-
-  useEffect(() => {
-    // Check if user has already seen the intro in this session
-    const introSeen = sessionStorage.getItem("introSeen")
-    if (introSeen === "true") {
-      setShowIntro(false)
-      setHasSeenIntro(true)
-    }
-  }, [])
 
   const handleIntroComplete = () => {
     setShowIntro(false)
-    setHasSeenIntro(true)
-    sessionStorage.setItem("introSeen", "true")
   }
 
   return (

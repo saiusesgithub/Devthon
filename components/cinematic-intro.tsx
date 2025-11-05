@@ -18,8 +18,9 @@ interface Particle {
 
 export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
   const [stage, setStage] = useState(0)
-  const devUpText = "DevUp Society"
-  const devthonText = "DEVTHON 2025"
+  const devUpText = "DEVTHON 2025"
+  const devthonText = "DevUp Society"
+  
 
   // Generate particles
   const particles = useMemo(() => {
@@ -273,7 +274,7 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
                   }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  Devthon
+                  DevUp Society
                 </motion.span>
               </motion.div>
 
