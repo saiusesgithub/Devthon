@@ -144,7 +144,7 @@ export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
         </h3>
 
         <div>
-          <Label htmlFor="teamName" className="text-foreground">Team Name *</Label>
+          <Label htmlFor="teamName" className="text-foreground mb-2 block">Team Name *</Label>
           <Input
             id="teamName"
             value={teamName}
@@ -156,7 +156,7 @@ export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
         </div>
 
         <div>
-          <Label htmlFor="institution" className="text-foreground">College/Institution *</Label>
+          <Label htmlFor="institution" className="text-foreground mb-2 block">College/Institution *</Label>
           <Input
             id="institution"
             value={institution}
@@ -173,7 +173,7 @@ export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
         <h3 className="text-xl font-bold text-foreground">Team Leader Details *</h3>
 
         <div>
-          <Label htmlFor="leaderName" className="text-foreground">Full Name *</Label>
+          <Label htmlFor="leaderName" className="text-foreground mb-2 block">Full Name *</Label>
           <Input
             id="leaderName"
             value={leaderName}
@@ -186,7 +186,7 @@ export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <Label htmlFor="leaderEmail" className="text-foreground">Email *</Label>
+            <Label htmlFor="leaderEmail" className="text-foreground mb-2 block">Email *</Label>
             <Input
               id="leaderEmail"
               type="email"
@@ -198,7 +198,7 @@ export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
             />
           </div>
           <div>
-            <Label htmlFor="leaderPhone" className="text-foreground">Phone *</Label>
+            <Label htmlFor="leaderPhone" className="text-foreground mb-2 block">Phone *</Label>
             <Input
               id="leaderPhone"
               type="tel"
@@ -245,7 +245,7 @@ export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label className="text-foreground">Name *</Label>
+                <Label className="text-foreground mb-2 block">Name *</Label>
                 <Input
                   value={member.name}
                   onChange={(e) => updateMember(index, "name", e.target.value)}
@@ -255,7 +255,7 @@ export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
                 />
               </div>
               <div>
-                <Label className="text-foreground">Email *</Label>
+                <Label className="text-foreground mb-2 block">Email *</Label>
                 <Input
                   type="email"
                   value={member.email}

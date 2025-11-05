@@ -253,12 +253,36 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
                 />
               ))}
 
+              {/* Middle text: Devthon */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.2, duration: 0.6 }}
+                className="mt-12 mb-8 text-3xl md:text-5xl font-bold text-white"
+                style={{
+                  textShadow: "0 0 20px rgba(0, 255, 179, 0.4)",
+                }}
+              >
+                <motion.span
+                  animate={{
+                    textShadow: [
+                      "0 0 20px rgba(0, 255, 179, 0.4)",
+                      "0 0 35px rgba(0, 255, 179, 0.6)",
+                      "0 0 20px rgba(0, 255, 179, 0.4)",
+                    ],
+                  }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  Devthon
+                </motion.span>
+              </motion.div>
+
               {/* Bottom tagline */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.5, duration: 0.8 }}
-                className="mt-8 text-accent text-xl md:text-2xl font-semibold tracking-widest"
+                className="text-accent text-xl md:text-2xl font-semibold tracking-widest"
               >
                 <motion.span
                   animate={{ opacity: [0.5, 1, 0.5] }}
