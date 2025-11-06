@@ -8,8 +8,9 @@ import type { TeamRegistration, TeamMember } from "@/lib/supabase"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
+import { Input } from "@/components/ui/input"
 import { toast } from "sonner"
-import { Users, Mail, Phone, Building2, RefreshCw } from "lucide-react"
+import { Users, Mail, Phone, Building2, RefreshCw, Search } from "lucide-react"
 
 interface TeamWithMembers extends TeamRegistration {
   team_members: TeamMember[]
@@ -19,6 +20,7 @@ export default function AdminPage() {
   const [teams, setTeams] = useState<TeamWithMembers[]>([])
   const [loading, setLoading] = useState(true)
   const [updating, setUpdating] = useState<string | null>(null)
+  const [searchQuery, setSearchQuery] = useState("")
 
   const fetchTeams = async () => {
     setLoading(true)
@@ -79,6 +81,11 @@ export default function AdminPage() {
       setUpdating(null)
     }
   }
+
+  // Filter teams based on search query
+  const filteredTeams = teams.filter((team) =>
+    team.team_name.toLowerCase().includes(searchQuery.toLowerCase())
+  )
 
   const stats = {
     total: teams.length,
@@ -154,6 +161,25 @@ export default function AdminPage() {
             </div>
           </div>
 
+          {/* Search Bar */}
+          <div className="mb-8">
+            <div className="relative max-w-md">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="Search team name..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 glass-effect border-border focus:border-accent"
+              />
+            </div>
+            {searchQuery && (
+              <p className="mt-2 text-sm text-muted-foreground">
+                Found {filteredTeams.length} team{filteredTeams.length !== 1 ? "s" : ""} matching "{searchQuery}"
+              </p>
+            )}
+          </div>
+
           {/* Teams List */}
           {loading ? (
             <div className="text-center py-12">
@@ -168,9 +194,24 @@ export default function AdminPage() {
                 Registered teams will appear here once they sign up
               </p>
             </Card>
+          ) : filteredTeams.length === 0 ? (
+            <Card className="glass-effect border border-border p-12 text-center">
+              <Search className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+              <h3 className="text-2xl font-bold text-foreground mb-2">No Teams Found</h3>
+              <p className="text-muted-foreground">
+                No teams match your search "{searchQuery}"
+              </p>
+              <Button
+                onClick={() => setSearchQuery("")}
+                variant="outline"
+                className="mt-4 border-accent text-accent hover:bg-accent/10"
+              >
+                Clear Search
+              </Button>
+            </Card>
           ) : (
             <div className="space-y-6">
-              {teams.map((team) => (
+              {filteredTeams.map((team) => (
                 <Card
                   key={team.id}
                   className={`glass-effect border p-6 transition-all ${
