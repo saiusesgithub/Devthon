@@ -43,15 +43,15 @@ export default function RegisterPage() {
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6 mt-12 w-full">
                 <div className="glass-effect rounded-lg p-4 text-center">
-                  <div className="text-3xl font-bold text-accent">500+</div>
+                  <div className="text-3xl font-bold text-accent">400+</div>
                   <p className="text-foreground/70 text-sm mt-1">Participants</p>
                 </div>
                 <div className="glass-effect rounded-lg p-4 text-center">
-                  <div className="text-3xl font-bold text-accent">$10K</div>
+                  <div className="text-3xl font-bold text-accent">₹10K</div>
                   <p className="text-foreground/70 text-sm mt-1">In Prizes</p>
                 </div>
                 <div className="glass-effect rounded-lg p-4 text-center">
-                  <div className="text-3xl font-bold text-accent">24h</div>
+                  <div className="text-3xl font-bold text-accent">2 Day</div>
                   <p className="text-foreground/70 text-sm mt-1">Duration</p>
                 </div>
               </div>

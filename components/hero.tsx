@@ -65,9 +65,12 @@ export default function Hero() {
           >
             Register Now
           </Link>
-          <button className="px-8 py-4 glass-effect text-accent rounded-full font-bold text-lg hover:bg-accent/10 transition-all duration-300 border border-accent/50 hover:border-accent">
+          <a
+            href="#about"
+            className="px-8 py-4 glass-effect text-accent rounded-full font-bold text-lg hover:bg-accent/10 transition-all duration-300 border border-accent/50 hover:border-accent"
+          >
             Learn More
-          </button>
+          </a>
         </div>
       </div>
     </section>
