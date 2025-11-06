@@ -19,20 +19,19 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-      {/* Animated background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-background to-background" />
-
+      {/* Floating Particles */}
       {particles.map((particle) => (
         <div
           key={particle.id}
-          className="absolute rounded-full bg-gradient-to-br from-accent to-primary opacity-60 animate-float pointer-events-none"
+          className="absolute rounded-full bg-accent animate-float pointer-events-none"
           style={{
             width: `${particle.size}px`,
             height: `${particle.size}px`,
             left: `${particle.x}%`,
             top: `${particle.y}%`,
             animationDelay: `${particle.id * 0.15}s`,
-            filter: "blur(0.5px)",
+            filter: "blur(1px)",
+            opacity: 0.6,
           }}
         />
       ))}
