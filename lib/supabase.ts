@@ -15,6 +15,9 @@ export interface TeamRegistration {
   leader_phone: string
   total_members: number
   total_fee: number
+  payment_id?: string
+  order_id?: string
+  payment_status?: string
   is_present?: boolean
   created_at?: string
 }

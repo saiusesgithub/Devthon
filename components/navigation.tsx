@@ -32,11 +32,8 @@ export default function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent to-primary flex items-center justify-center glow-neon">
-              <span className="font-bold text-sm text-primary-foreground">D</span>
-            </div>
-            <span className="text-lg font-bold text-accent hidden sm:inline">DevUp</span>
+          <Link href="/" className="hover:opacity-80 transition-opacity">
+            <span className="text-lg font-bold text-accent">DEVUP SOCIETY</span>
           </Link>
 
           {/* Desktop Menu */}

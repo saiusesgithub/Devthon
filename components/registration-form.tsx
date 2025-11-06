@@ -66,70 +66,154 @@ export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
     setIsSubmitting(true)
 
     try {
-      // 1. Insert team data
-      const { data: teamData, error: teamError } = await supabase
-        .from("teams")
-        .insert({
-          team_name: teamName,
-          institution: institution,
-          leader_name: leaderName,
-          leader_email: leaderEmail,
-          leader_phone: leaderPhone,
-          total_members: totalMembers,
-          total_fee: totalFee,
-        })
-        .select()
-        .single()
-
-      if (teamError) {
-        console.error("Team insert error:", teamError)
-        toast.error(`Failed to register team: ${teamError.message}`)
-        setIsSubmitting(false)
-        return
-      }
-
-      // 2. Insert team members if any
-      if (members.length > 0 && teamData) {
-        const membersToInsert = members.map((member) => ({
-          team_id: teamData.id,
-          name: member.name,
-          email: member.email,
-        }))
-
-        const { error: membersError } = await supabase
-          .from("team_members")
-          .insert(membersToInsert)
-
-        if (membersError) {
-          console.error("Members insert error:", membersError)
-          toast.error(`Team created but failed to add members: ${membersError.message}`)
-          setIsSubmitting(false)
-          return
-        }
-      }
-
-      toast.success("Registration saved successfully! Payment integration coming soon.")
-      console.log({
-        teamName,
-        institution,
-        leader: { name: leaderName, email: leaderEmail, phone: leaderPhone },
-        members,
-        totalFee,
+      // 1. Create Razorpay order
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000"
+      const orderResponse = await fetch(`${backendUrl}/api/payments/create-order`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ amount: totalFee }),
       })
 
-      onSuccess?.()
+      if (!orderResponse.ok) {
+        throw new Error("Failed to create order")
+      }
 
-      // Reset form
-      setTeamName("")
-      setInstitution("")
-      setLeaderName("")
-      setLeaderEmail("")
-      setLeaderPhone("")
-      setMembers([])
+      const orderData = await orderResponse.json()
+
+      // Store form data for use in payment handler
+      const formData = {
+        teamName,
+        institution,
+        leaderName,
+        leaderEmail,
+        leaderPhone,
+        members: [...members],
+        totalMembers,
+        totalFee,
+      }
+
+      // 2. Open Razorpay checkout
+      const options = {
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_test_Rc6729blYXJNt1",
+        amount: orderData.amount,
+        currency: orderData.currency,
+        name: "DevUp Society",
+        description: "Hackathon Registration Fee",
+        order_id: orderData.id,
+        handler: async function (response: any) {
+          try {
+            // 3. Verify payment
+            const verifyResponse = await fetch(`${backendUrl}/api/payments/verify-payment`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+              }),
+            })
+
+            const verifyData = await verifyResponse.json()
+
+            if (verifyData.status === "ok") {
+              // 4. Save to Supabase after successful payment WITH payment details
+              const { data: teamData, error: teamError } = await supabase
+                .from("teams")
+                .insert({
+                  team_name: formData.teamName,
+                  institution: formData.institution,
+                  leader_name: formData.leaderName,
+                  leader_email: formData.leaderEmail,
+                  leader_phone: formData.leaderPhone,
+                  total_members: formData.totalMembers,
+                  total_fee: formData.totalFee,
+                  payment_id: response.razorpay_payment_id,
+                  order_id: response.razorpay_order_id,
+                  payment_status: 'completed',
+                })
+                .select()
+                .single()
+
+              if (teamError) {
+                console.error("Team insert error:", teamError)
+                console.error("Error code:", teamError.code)
+                console.error("Error message:", teamError.message)
+                console.error("Error details:", teamError.details)
+                console.error("Error hint:", teamError.hint)
+                alert(`Database Error: ${teamError.message || 'Unknown error'}. Payment ID: ${response.razorpay_payment_id}`)
+                toast.error(`Payment successful but database error. Payment ID: ${response.razorpay_payment_id}`)
+                setIsSubmitting(false)
+                return
+              }
+
+              // 5. Insert team members if any
+              if (formData.members.length > 0 && teamData) {
+                const membersToInsert = formData.members.map((member) => ({
+                  team_id: teamData.id,
+                  name: member.name,
+                  email: member.email,
+                }))
+
+                const { error: membersError } = await supabase
+                  .from("team_members")
+                  .insert(membersToInsert)
+
+                if (membersError) {
+                  console.error("Members insert error:", membersError)
+                  toast.error(`Registration saved but failed to add members: ${membersError.message}`)
+                }
+              }
+
+              // Redirect to success page with payment details
+              const successData = {
+                paymentId: response.razorpay_payment_id,
+                orderId: response.razorpay_order_id,
+                amount: formData.totalFee,
+                teamName: formData.teamName,
+                teamId: teamData.id,
+              }
+              
+              // Store in sessionStorage for success page
+              sessionStorage.setItem('paymentSuccess', JSON.stringify(successData))
+              
+              // Redirect to success page
+              window.location.href = '/register/success'
+            } else {
+              toast.error("Payment verification failed")
+              setIsSubmitting(false)
+            }
+          } catch (error) {
+            console.error("Payment handler error:", error)
+            toast.error("Error processing payment. Please contact support.")
+          } finally {
+            setIsSubmitting(false)
+          }
+        },
+        prefill: {
+          name: leaderName,
+          email: leaderEmail,
+          contact: leaderPhone,
+        },
+        theme: {
+          color: "#00ffb3",
+        },
+        modal: {
+          ondismiss: function () {
+            toast.error("Payment cancelled")
+            setIsSubmitting(false)
+          },
+        },
+      }
+
+      const razorpay = new (window as any).Razorpay(options)
+      razorpay.open()
     } catch (error) {
       console.error("Unexpected error:", error)
       toast.error("An unexpected error occurred. Please try again.")
-    } finally {
       setIsSubmitting(false)
     }
   }
@@ -303,7 +387,7 @@ export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
       </Button>
 
       <p className="text-sm text-muted-foreground text-center">
-        Payment gateway integration coming soon. Currently in development.
+        Secure payment powered by Razorpay
       </p>
     </form>
   )

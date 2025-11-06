@@ -296,7 +296,7 @@ export default function AdminPage() {
 
                   {/* Team Members */}
                   {team.team_members && team.team_members.length > 0 && (
-                    <div>
+                    <div className="mb-4">
                       <p className="text-sm font-semibold text-accent mb-2">Team Members</p>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {team.team_members.map((member, idx) => (
@@ -314,6 +314,33 @@ export default function AdminPage() {
                             </p>
                           </div>
                         ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Payment Details */}
+                  {team.payment_id && (
+                    <div className="mb-4 p-4 bg-green-500/10 rounded-lg border border-green-500/30">
+                      <p className="text-sm font-semibold text-green-500 mb-2">Payment Details</p>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                        <div>
+                          <p className="text-muted-foreground">Payment ID</p>
+                          <p className="text-foreground font-mono text-xs break-all">{team.payment_id}</p>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">Order ID</p>
+                          <p className="text-foreground font-mono text-xs break-all">{team.order_id}</p>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">Status</p>
+                          <span className="px-2 py-1 bg-green-500/20 text-green-500 text-xs font-semibold rounded">
+                            {team.payment_status?.toUpperCase() || 'COMPLETED'}
+                          </span>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">Amount Paid</p>
+                          <p className="text-green-500 font-bold">₹{team.total_fee}</p>
+                        </div>
                       </div>
                     </div>
                   )}
