@@ -17,11 +17,11 @@ export default function Navigation() {
   }, [])
 
   const links = [
-    { label: "About", href: "#about" },
-    { label: "Timeline", href: "#timeline" },
-    { label: "Prizes", href: "#prizes" },
-    { label: "Themes", href: "#themes" },
-    { label: "FAQ", href: "#faq" },
+    { label: "About", href: "/#about" },
+    { label: "Timeline", href: "/#timeline" },
+    { label: "Prizes", href: "/#prizes" },
+    { label: "Themes", href: "/#themes" },
+    { label: "FAQ", href: "/#faq" },
   ]
 
   return (
@@ -42,13 +42,13 @@ export default function Navigation() {
           {/* Desktop Menu */}
           <div className="hidden md:flex gap-8">
             {links.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="text-foreground/80 hover:text-accent transition-colors duration-300 text-sm font-medium"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -72,16 +72,18 @@ export default function Navigation() {
         {isOpen && (
           <div className="md:hidden pb-4 border-t border-accent/20">
             {links.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
+                onClick={() => setIsOpen(false)}
                 className="block px-4 py-2 text-foreground/80 hover:text-accent hover:bg-accent/5 transition-all duration-300 text-sm"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             <Link
               href="/register"
+              onClick={() => setIsOpen(false)}
               className="w-[calc(100%-2rem)] mx-4 mt-2 block text-center px-6 py-2 bg-gradient-to-r from-accent to-primary text-primary-foreground rounded-full font-semibold hover:shadow-lg transition-all duration-300"
             >
               Register

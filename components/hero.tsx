@@ -46,7 +46,7 @@ export default function Hero() {
           <span className="text-accent font-semibold text-sm">Innovation Awaits</span>
         </div>
 
-        <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-balance mb-6">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-balance mb-6">
           <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent">
             DEVTHON
           </span>

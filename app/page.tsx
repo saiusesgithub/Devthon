@@ -16,8 +16,15 @@ import CinematicIntro from "@/components/cinematic-intro"
 export default function Home() {
   const [showIntro, setShowIntro] = useState(true)
 
+  useEffect(() => {
+    // Scroll to top on page load/refresh
+    window.scrollTo(0, 0)
+  }, [])
+
   const handleIntroComplete = () => {
     setShowIntro(false)
+    // Ensure we're at the top after intro completes
+    window.scrollTo(0, 0)
   }
 
   return (

@@ -299,7 +299,7 @@ export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
         className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-lg py-6"
         disabled={isSubmitting}
       >
-        {isSubmitting ? "Processing..." : "Proceed to Payment"}
+        {isSubmitting ? "Processing..." : `Pay ₹${totalFee}`}
       </Button>
 
       <p className="text-sm text-muted-foreground text-center">
